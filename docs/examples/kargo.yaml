@@ -1,0 +1,38 @@
+---
+# Kargo client configuration
+# Public client with PKCE for CLI support
+realm: fartlab
+client:
+  clientId: kargo
+  name: Kargo
+  protocol: openid-connect
+
+  # Public client - PKCE provides security, no secret needed
+  publicClient: true
+
+  # OAuth flows
+  standardFlowEnabled: true  # Authorization Code flow (UI + CLI)
+  directAccessGrantsEnabled: false
+  implicitFlowEnabled: false
+  serviceAccountsEnabled: false
+
+  # PKCE for CLI authentication
+  pkceCodeChallengeMethod: S256
+
+  # URLs
+  rootUrl: https://kargo.fartlab.dev
+  baseUrl: https://kargo.fartlab.dev
+  redirectUris:
+    - https://kargo.fartlab.dev/*
+  webOrigins:
+    - https://kargo.fartlab.dev
+
+  # Scopes
+  defaultClientScopes:
+    - groups  # realm-level scope, shared
+    - roles  # realm-level scope, shared
+    - profile  # realm-level scope, shared
+    - basic  # realm-level scope, shared
+    - email  # realm-level scope, shared
+    - web-origins  # realm-level scope, shared
+    - acr  # realm-level scope, shared

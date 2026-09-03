@@ -1,0 +1,35 @@
+---
+# Backstage client configuration
+# Confidential client - requires client secret
+realm: fartlab
+client:
+  clientId: backstage
+  name: Backstage
+  protocol: openid-connect
+
+  # Confidential client - server-side app needs a secret
+  publicClient: false
+
+  # OAuth flows
+  standardFlowEnabled: true
+  directAccessGrantsEnabled: false
+  implicitFlowEnabled: false
+  serviceAccountsEnabled: true
+
+  # URLs
+  rootUrl: https://backstage.fartlab.dev
+  baseUrl: https://backstage.fartlab.dev
+  redirectUris:
+    - https://backstage.fartlab.dev/api/auth/oidc/handler/frame
+  webOrigins:
+    - https://backstage.fartlab.dev
+
+  # Scopes
+  defaultClientScopes:
+    - profile
+    - email
+    - groups
+    - roles
+    - basic
+    - web-origins
+    - acr

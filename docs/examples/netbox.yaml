@@ -1,0 +1,36 @@
+---
+# Langfuse client configuration
+# Confidential client - requires client secret for Langfuse OAuth
+realm: fartlab
+client:
+  clientId: netbox
+  name: Netbox
+  protocol: openid-connect
+  description: Netbox
+
+  # Confidential client
+  publicClient: false
+
+  # OAuth flows
+  standardFlowEnabled: true
+  directAccessGrantsEnabled: false
+  implicitFlowEnabled: false
+  serviceAccountsEnabled: false
+
+  # URLs
+  rootUrl: https://netbox.fartlab.dev
+  baseUrl: https://netbox.fartlab.dev
+  redirectUris:
+    - https://netbox.fartlab.dev/oauth/complete/oidc/
+  webOrigins:
+    - https://netbox.fartlab.dev
+
+  # Scopes
+  defaultClientScopes:
+    - groups  # realm-level scope, shared
+    - roles  # realm-level scope, shared
+    - profile  # realm-level scope, shared
+    - basic  # realm-level scope, shared
+    - email  # realm-level scope, shared
+    - web-origins  # realm-level scope, shared
+    - acr  # realm-level scope, shared

@@ -1,0 +1,31 @@
+---
+# Forgejo client configuration
+# Confidential client - requires client secret for Forgejo OAuth
+realm: fartlab
+client:
+  clientId: forgejo
+  name: Forgejo
+  protocol: openid-connect
+
+  publicClient: false
+
+  standardFlowEnabled: true
+  directAccessGrantsEnabled: false
+  implicitFlowEnabled: false
+  serviceAccountsEnabled: false
+
+  rootUrl: https://forgejo.fartlab.dev
+  baseUrl: https://forgejo.fartlab.dev
+  redirectUris:
+    - https://forgejo.fartlab.dev/user/oauth2/Keycloak/callback
+  webOrigins:
+    - https://forgejo.fartlab.dev
+
+  defaultClientScopes:
+    - profile
+    - email
+    - groups
+    - roles
+    - basic
+    - web-origins
+    - acr

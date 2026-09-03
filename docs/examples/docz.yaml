@@ -1,0 +1,43 @@
+---
+# MANUAL Keycloak prereqs (clients are NOT in the realm import):
+#   Realm fartlab -> create client `headlamp`:
+#     - Client authentication ON (confidential), Standard flow ON
+#     - Valid redirect URIs: https://headlamp.fartlab.dev/oidc-callback
+#     - Web origins:         https://headlamp.fartlab.dev
+#   Then copy the generated client secret into the item's OIDC_CLIENT_SECRET.
+# Public client with PKCE for CLI support
+realm: fartlab
+client:
+  clientId: docz
+  name: docz
+  protocol: openid-connect
+
+  # Public client - PKCE provides security, no secret needed
+  publicClient: false
+
+  # OAuth flows
+  standardFlowEnabled: true  # Authorization Code flow (UI + CLI)
+  directAccessGrantsEnabled: false
+  implicitFlowEnabled: false
+  serviceAccountsEnabled: false
+
+  # PKCE for CLI authentication
+  pkceCodeChallengeMethod: S256
+
+  # URLs
+  rootUrl: https://docz.fartlab.dev
+  baseUrl: https://docz.fartlab.dev
+  redirectUris:
+    - https://docz.fartlab.dev/auth/callback
+  webOrigins:
+    - https://docz.fartlab.dev
+
+  # Scopes
+  defaultClientScopes:
+    - groups  # realm-level scope, shared
+    - roles  # realm-level scope, shared
+    - profile  # realm-level scope, shared
+    - basic  # realm-level scope, shared
+    - email  # realm-level scope, shared
+    - web-origins  # realm-level scope, shared
+    - acr  # realm-level scope, shared

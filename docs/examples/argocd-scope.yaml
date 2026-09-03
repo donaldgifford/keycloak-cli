@@ -1,0 +1,20 @@
+# ArgoCD dedicated client scope
+# Maps the 'argocd' LLDAP attribute to token claims for RBAC
+realm: fartlab
+clientScope:
+  name: argocd-dedicated
+  description: ArgoCD role mapping from LLDAP argocd attribute
+  protocol: openid-connect
+
+  protocolMappers:
+    # Map LLDAP 'argocd' attribute to 'argocd' claim in tokens
+    - name: argocd
+      protocolMapper: oidc-usermodel-attribute-mapper
+      config:
+        user.attribute: argocd           # LLDAP attribute name
+        claim.name: argocd               # Token claim name
+        jsonType.label: String
+        id.token.claim: "true"
+        access.token.claim: "true"
+        userinfo.token.claim: "true"
+        multivalued: "false"

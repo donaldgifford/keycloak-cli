@@ -1,0 +1,20 @@
+# Grafana dedicated client scope
+# Maps the 'grafana' LLDAP attribute to token claims for role mapping
+realm: fartlab
+clientScope:
+  name: grafana-dedicated
+  description: Grafana role mapping from LLDAP grafana attribute
+  protocol: openid-connect
+
+  protocolMappers:
+    # Map LLDAP 'grafana' attribute to 'grafana_role' claim in tokens
+    - name: grafana-role
+      protocolMapper: oidc-usermodel-attribute-mapper
+      config:
+        user.attribute: grafana          # LLDAP attribute name
+        claim.name: grafana_role         # Token claim name (Grafana expects this)
+        jsonType.label: String
+        id.token.claim: "true"
+        access.token.claim: "true"
+        userinfo.token.claim: "true"
+        multivalued: "false"

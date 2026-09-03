@@ -1,0 +1,60 @@
+# Template for creating new client scopes
+# Client scopes contain protocol mappers that add claims to tokens
+
+realm: fartlab
+clientScope:
+  # Name must be unique within the realm
+  name: my-app-dedicated
+  description: Custom scope for my-app
+
+  # Protocol: openid-connect or saml
+  protocol: openid-connect
+
+  # Protocol mappers define how attributes become token claims
+  protocolMappers:
+    # Example: Map a user attribute to a token claim
+    - name: my-attribute
+      protocolMapper: oidc-usermodel-attribute-mapper
+      config:
+        # Source: user attribute name (from LDAP/LLDAP or Keycloak user attributes)
+        user.attribute: myAttribute
+
+        # Target: claim name in the token
+        claim.name: my_claim
+
+        # Data type: String, boolean, int, long, JSON
+        jsonType.label: String
+
+        # Which tokens to include the claim in:
+        id.token.claim: "true"      # ID token (used for authentication)
+        access.token.claim: "true"  # Access token (used for authorization)
+        userinfo.token.claim: "true" # UserInfo endpoint response
+
+        # Set to "true" if the attribute can have multiple values
+        multivalued: "false"
+
+    # Example: Hardcoded claim (static value)
+    # - name: app-version
+    #   protocolMapper: oidc-hardcoded-claim-mapper
+    #   config:
+    #     claim.name: app_version
+    #     claim.value: "1.0"
+    #     jsonType.label: String
+    #     id.token.claim: "true"
+    #     access.token.claim: "true"
+
+    # Example: Audience mapper (add audience to token)
+    # - name: my-app-audience
+    #   protocolMapper: oidc-audience-mapper
+    #   config:
+    #     included.client.audience: my-app
+    #     id.token.claim: "false"
+    #     access.token.claim: "true"
+
+# Common protocolMapper types:
+# - oidc-usermodel-attribute-mapper: Map user attribute to claim
+# - oidc-usermodel-property-mapper: Map user property (email, username, etc.)
+# - oidc-hardcoded-claim-mapper: Add a static claim value
+# - oidc-audience-mapper: Add audience to token
+# - oidc-group-membership-mapper: Add group membership to claim
+# - oidc-role-name-mapper: Map role names

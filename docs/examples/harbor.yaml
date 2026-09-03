@@ -1,0 +1,35 @@
+---
+# Harbor container registry client configuration
+# Confidential client with client secret
+realm: fartlab
+client:
+  clientId: harbor
+  name: Harbor Registry
+  protocol: openid-connect
+  description: Harbor container registry with pull-through cache
+
+  # Confidential client (requires secret)
+  publicClient: false
+
+  # OAuth flows
+  standardFlowEnabled: true
+  directAccessGrantsEnabled: false
+  implicitFlowEnabled: false
+  serviceAccountsEnabled: false
+
+  # URLs
+  rootUrl: https://harbor.fartlab.dev
+  baseUrl: https://harbor.fartlab.dev
+  redirectUris:
+    - https://harbor.fartlab.dev/c/oidc/callback
+  webOrigins:
+    - https://harbor.fartlab.dev
+
+  # Scopes - use shared groups scope for RBAC
+  defaultClientScopes:
+    - groups   # realm-level scope for LLDAP group membership
+    - profile  # realm-level scope
+    - email    # realm-level scope
+    - basic    # realm-level scope
+    - web-origins  # realm-level scope
+    - acr      # realm-level scope
