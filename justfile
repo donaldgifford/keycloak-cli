@@ -1,9 +1,14 @@
 # keycloak-cli — task runner
 #
-# Project automation via just. Use either the Makefile or this justfile —
-# both expose the same target set with equivalent behavior.
+# Project automation via just — the single task runner for this repo.
 
 set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
+
+# Optional recipe modules — blueprints that ship them (e.g. go/k8s adds
+# docker.just and helm.just) get the extra recipe groups; the import is
+# skipped silently when the file is absent.
+import? 'docker.just'
+import? 'helm.just'
 
 project_name      := "keycloak-cli"
 project_owner     := "donaldgifford"

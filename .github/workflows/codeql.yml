@@ -1,5 +1,5 @@
 ---
-# $schema=https://www.schemastore.org/github-action.json
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: CodeQL
 
 on:
@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    # Mondays at 0000 — same slot as security.yml's grype scan.
+    # Mondays at 0000 — same slot as security.yml's govulncheck scan.
     - cron: "0 0 * * 1"
 
 permissions:

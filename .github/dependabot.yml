@@ -1,5 +1,5 @@
 ---
-# $schema=https://www.schemastore.org/dependabot-2.0.json
+# yaml-language-server: $schema=https://www.schemastore.org/dependabot-2.0.json
 # Security-updates-only mode. Renovate owns routine version bumps
 # (per the `# renovate:` annotations in mise.toml, docker-bake.hcl,
 # etc.); Dependabot's only job here is the GitHub Advisory feed —
@@ -20,7 +20,7 @@ updates:
       - dependencies
       - github_actions
     assignees:
-      - ${project_owner}
+      - donaldgifford
     groups:
       actions-security:
         applies-to: security-updates
@@ -36,7 +36,7 @@ updates:
       - dependencies
       - docker
     assignees:
-      - ${project_owner}
+      - donaldgifford
     groups:
       docker-security:
         applies-to: security-updates
@@ -52,7 +52,7 @@ updates:
       - dependencies
       - go
     assignees:
-      - ${project_owner}
+      - donaldgifford
     groups:
       gomod-security:
         applies-to: security-updates

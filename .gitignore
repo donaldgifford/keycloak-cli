@@ -2,16 +2,12 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 # Go-specific (supplements registry-root .gitignore)
-*.test
-*.out
-*.exe
-coverage.txt
-coverage.html
 
 # Build output
 /dist/
 /bin/
-/${project_name}
+/keycloak-cli
+build/
 
 # IDE
 .vscode/
@@ -33,6 +29,7 @@ coverage.html
 coverage.*
 *.coverprofile
 profile.cov
+*.test
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
@@ -41,18 +38,16 @@ profile.cov
 go.work
 go.work.sum
 
-# env file
-.env
-
-# Editor/IDE
-.idea/
-.vscode/
-
-# Build directories
-build/
-
-# Goreleaser snapshot output (created by `make release-local`)
+# Goreleaser snapshot output (created by `just release-local`)
 dist/
 
 # donald-loop runtime state
 .claude/donald-loop.local.md
+
+# Keys and certs
+*.pem
+*.cert
+
+# OS files
+.DS_Store
+Thumbs.db

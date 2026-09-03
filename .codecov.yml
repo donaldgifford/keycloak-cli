@@ -1,5 +1,5 @@
 ---
-# $schema=https://www.schemastore.org/codecov.json
+# yaml-language-server: $schema=https://www.schemastore.org/codecov.json
 coverage:
   status:
     project:
@@ -7,6 +7,6 @@ coverage:
         target: 60%
         threshold: 40%
 ignore:
-  - "main.go"
+  - "cmd/keycloak-cli/main.go"
   - "docs"
   - "scripts"

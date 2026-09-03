@@ -1,5 +1,5 @@
 ---
-# $schema=https://www.schemastore.org/golangci.jsonschema.json
+# yaml-language-server: $schema=https://json.schemastore.org/golangci-lint.json
 # golangci-lint configuration based on Uber's Go Style Guide
 # https://github.com/uber-go/guide/blob/master/style.md
 #
