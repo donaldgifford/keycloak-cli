@@ -1,0 +1,31 @@
+---
+# Groups scope - RECOMMENDED
+# Maps all LLDAP group memberships to a 'groups' token claim.
+# This is the recommended approach for RBAC across multiple apps.
+#
+# With this scope:
+# - All LLDAP groups automatically appear in the token's 'groups' claim
+# - Each app filters for the groups it cares about
+# - No per-app Keycloak configuration needed
+# - Adding a new app = create LLDAP group + configure app RBAC
+#
+# Example token claim:
+#   "groups": ["lldap_admin"]
+#
+# See README.md for full setup instructions.
+
+realm: my-realm
+clientScope:
+  name: groups
+  description: Maps LLDAP group membership to token claims
+  protocol: openid-connect
+
+  protocolMappers:
+    - name: group-membership
+      protocolMapper: oidc-group-membership-mapper
+      config:
+        claim.name: groups
+        full.path: "false"  # Use short group names, not full DN path
+        id.token.claim: "true"
+        access.token.claim: "true"
+        userinfo.token.claim: "true"
