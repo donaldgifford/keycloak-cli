@@ -1,0 +1,56 @@
+---
+# Template for creating new Keycloak clients
+# Copy this file and modify as needed
+
+realm: my-realm  # Target realm
+client:
+  # Required: unique identifier for the client
+  clientId: my-app
+
+  # Optional: display name and description
+  name: My Application
+  description: Description of the application
+
+  # Client type (choose one):
+  # - publicClient: true  -> No secret, use PKCE for security (SPAs, CLIs)
+  # - publicClient: false -> Confidential, requires client secret (server apps)
+  publicClient: true
+
+  # OAuth 2.0 / OIDC flows (enable as needed):
+  standardFlowEnabled: true  # Authorization Code flow (most common)
+  directAccessGrantsEnabled: false  # Resource Owner Password (avoid if possible)
+  implicitFlowEnabled: false  # Implicit flow (deprecated, avoid)
+  serviceAccountsEnabled: false  # Client Credentials flow (machine-to-machine)
+
+  # PKCE (recommended for public clients)
+  # Options: S256 (recommended), plain, or omit for no PKCE
+  pkceCodeChallengeMethod: S256
+
+  # URLs
+  rootUrl: https://my-app.example.com
+  baseUrl: /  # Optional: default redirect after login
+  redirectUris:
+    - https://my-app.example.com/callback
+    - https://my-app.example.com/auth/callback
+    # Add localhost for development/CLI if needed:
+    # - http://localhost:8080/callback
+  webOrigins:
+    - https://my-app.example.com
+    # Use + to allow all redirect URI origins:
+    # - +
+
+  # Consent
+  consentRequired: false  # Set to true to show consent screen
+
+  # Client scopes (must exist in Keycloak)
+  defaultClientScopes:
+    - profile
+    - email
+    # Add custom scopes as needed:
+    # - my-app-dedicated
+  optionalClientScopes: []
+
+  # Additional attributes (advanced)
+  # attributes:
+  #   post.logout.redirect.uris: https://my-app.example.com
+  #   backchannel.logout.url: https://my-app.example.com/logout/callback
